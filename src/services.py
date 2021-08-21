@@ -63,8 +63,17 @@ def get_stats(filter_type: str) -> dict:
 
     divider = len(objects)
 
+    if divider == 0:
+        ad_requests_stats = 0
+        impressions_stats = 0
+        fill_rate_stats = 0
+    else:
+        ad_requests_stats = ad_requests / divider
+        impressions_stats = impressions / divider
+        fill_rate_stats = impressions / divider if ad_requests == 0 else impressions / ad_requests/ divider
+
     return {
-        f"ad_requests_per_{filter_type}": ad_requests / divider,
-        f"impressions_per_{filter_type}": impressions / divider,
-        "fill_rate": impressions / ad_requests / divider,
+        f"ad_requests_per_{filter_type}": ad_requests_stats,
+        f"impressions_per_{filter_type}": impressions_stats,
+        "fill_rate": fill_rate_stats,
     }
