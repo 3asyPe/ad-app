@@ -10,7 +10,7 @@ def get_xml():
     return xml
 
 
-def get_or_create_user_by_name(name) -> User:
+def get_or_create_user_by_name(name: str) -> User:
     user = User.query.filter_by(name=name).first()
     if user is None:
         user = User(name=name)
@@ -19,7 +19,7 @@ def get_or_create_user_by_name(name) -> User:
     return user
 
 
-def get_or_create_sdk_by_version(version) -> SDK:
+def get_or_create_sdk_by_version(version: str) -> SDK:
     sdk = SDK.query.filter_by(version=version).first()
     if sdk is None:
         sdk = SDK(version=version)
